@@ -1,0 +1,2 @@
+python ../expand_configs.py
+docker build -f docker_ckan -t ckan/ckan .

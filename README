@@ -1,0 +1,2 @@
+docker-images maken met 'build' in de afzonderlijke directories.
+Daarna starten met 'run' (volgorde: eerst postgres+/solr, dan ckan-image).
