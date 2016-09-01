@@ -1,2 +1,4 @@
-docker-images maken met 'build' in de afzonderlijke directories.
-Daarna starten met 'run' (volgorde: eerst postgres+/solr, dan ckan-image).
+build docker-images by running './build' in ckan, psql and solr directories.
+Start postgres and solr containers with './run' in psql/solr directories.
+Create databasestructures by executing './cleandb'  script in ckan directory.
+Start ckan container with './run' script in ckan directory.
