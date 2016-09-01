@@ -2,7 +2,6 @@ FROM phusion/baseimage
 
 RUN apt-get update && apt-get install -y \
 	python-dev libpq-dev python-pip git-core sudo \
-	python-polib \
 	python-virtualenv \
 	python-pastescript \
 	apache2 libapache2-mod-wsgi libapache2-mod-rpaf nginx \
@@ -68,9 +67,6 @@ RUN chown www-data:www-data /etc/ckan/default/apache.wsgi
 
 EXPOSE 80 5000
 
-
-#ADD ./config/contrib/docker/my_init.d /etc/my_init.d
-#RUN mkdir /etc/my_init.d
 ADD ./config/contrib/docker/svc /etc/service
 #CMD ["paster","serve","/etc/ckan/default/development.ini"]
 
