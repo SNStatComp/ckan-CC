@@ -2,6 +2,7 @@ FROM phusion/baseimage
 
 RUN apt-get update && apt-get install -y \
 	python-dev libpq-dev python-pip git-core sudo \
+	python-polib \
 	python-virtualenv \
 	python-pastescript \
 	apache2 libapache2-mod-wsgi libapache2-mod-rpaf nginx \
