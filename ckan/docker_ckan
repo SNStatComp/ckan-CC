@@ -40,7 +40,6 @@ RUN mkdir /var/lib/ckan
 RUN chmod 755 /var/lib/ckan   
 RUN chown www-data:www-data /var/lib/ckan
 
-#RUN paster make-config ckan /etc/ckan/default/development.ini
 ADD ./config/dev.ini /etc/ckan/default/development.ini
 ADD ./config/who.ini /etc/ckan/default/who.ini
 
