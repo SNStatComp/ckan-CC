@@ -31,13 +31,19 @@ for dirinfo in filelist:
 	directory=dirinfo[0]
 	for filename in filenames:
 		if filename[-extensielengte:]==extensie:
-			print 'templating %s' % (directory+'/'+filename)
+			fullname=directory+'/'+filename
+			newname=fullname[:-extensielengte]
+			print 'templating %s' % (fullname)
 			
-			f=open(directory+'/'+filename, 'rb')
+			f=open(fullname, 'rb')
 			filetxt=f.read()
 			f.close()
+			perms=os.stat(fullname).st_mode & 0777
+
 			template = Template(filetxt)
 			txt=template.render(passdict)
-			g=open(directory+'/'+filename[:-extensielengte],'w')
+			g=open(newname,'w')
 			g.write(txt)
 			g.close()
+			os.chmod(newname,perms)
+
