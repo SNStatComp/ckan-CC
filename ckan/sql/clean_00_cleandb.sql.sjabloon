@@ -1,0 +1,4 @@
+drop database if exists {{ckan_db}} ;
+drop role if exists {{ckan_user}};
+CREATE USER "{{ckan_user}}" with password '{{ckan_password}}';
+CREATE DATABASE "{{ckan_db}}" OWNER "{{ckan_user}}";
