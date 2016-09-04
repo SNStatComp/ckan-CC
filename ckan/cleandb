@@ -5,6 +5,6 @@ psql -h 172.17.0.1 -p 5432 -U postgres -f sql/clean_01_init_datastore.sql
 docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add alex password=alexalex email=apem@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
 docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add dick password=dickdick email=dick@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
 docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add olav password=olavolav email=obos@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add alex password=oleole email=ontomus@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
+docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add ole password=oleole email=ontomus@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
 docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add jan password=janjan email=jlan@cbs.nl sysadmin=True -c /etc/ckan/default/development.ini
 docker run -p 5000:5000 -p 80:80 --link db:db --link solr:solr ckan/ckan paster user add test password=testtest email=testaccount@cbs.nl  -c /etc/ckan/default/development.ini

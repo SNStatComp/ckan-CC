@@ -21,4 +21,4 @@ RUN chmod +x /home/install/install_datapusher.sh
 RUN /home/install/install_datapusher.sh
 
 #replace ckan.ini with our ckan.ini
-ADD ./development.ini /etc/ckan/default/development.ini
+ADD ./dev.ini /etc/ckan/default/dev.ini
