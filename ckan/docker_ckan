@@ -35,6 +35,7 @@ RUN pip install setuptools==20.4
 RUN pip install pylons==0.9.7
 RUN pip install webob==1.0.8
 RUN pip install html5lib==0.999
+RUN pip install ckanapi
 
 # move to data volume
 RUN mkdir /var/lib/ckan

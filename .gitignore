@@ -1,4 +1,5 @@
 passfile
 ckan/cleandb
+ckan/initdb2
 ckan/sql/*.sql
 **/dev.ini
