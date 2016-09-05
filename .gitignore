@@ -1,3 +1,4 @@
 passfile
+ckan/cleandb
 ckan/sql/*.sql
-plugins/datapusher/development.ini
+**/dev.ini
