@@ -106,10 +106,12 @@ ckan.views.default_views = image_view text_view recline_view
 
 
 ## Front-End Settings
-ckan.site_title = CKAN
-ckan.site_logo = /base/images/ckan-logo.png
-ckan.site_description =
-ckan.favicon = /images/icons/ckan.ico
+ckan.site_title = ClairCity data portal (development version)
+# CKAN prepends /usr/lib/ckan/default/src/ckan/ckan/public to the path below
+ckan.site_logo = /base/images/clair-city-logo.svg
+ckan.site_description = This site is for testing and development only. Any data uploaded may be removed any time.
+# CKAN prepends /usr/lib/ckan/default/src/ckan/ckan/public to the path below
+ckan.favicon = /base/images/favicon.ico
 ckan.gravatar_default = identicon
 ckan.preview.direct = png jpg gif
 ckan.preview.loadable = html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json
