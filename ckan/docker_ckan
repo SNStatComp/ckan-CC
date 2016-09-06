@@ -25,7 +25,7 @@ RUN . /usr/lib/ckan/default/bin/activate
 RUN pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.5.2#egg=ckan'
 
 RUN pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
-RUN mkdir -p /etc/ckan/default && chown -R `whoami` /etc/ckan/ 
+RUN mkdir -p /etc/ckan/default && chown -R `whoami` /etc/ckan/
 RUN pip uninstall -y paste
 RUN pip uninstall -y pastedeploy
 RUN pip install --upgrade paste
@@ -39,7 +39,7 @@ RUN pip install ckanapi
 
 # move to data volume
 RUN mkdir /var/lib/ckan
-RUN chmod 755 /var/lib/ckan   
+RUN chmod 755 /var/lib/ckan
 RUN chown www-data:www-data /var/lib/ckan
 
 ADD ./config/dev.ini /etc/ckan/default/development.ini
@@ -50,7 +50,7 @@ WORKDIR /usr/lib/ckan/default/src/ckan
 #RUN paster db init -c /etc/ckan/default/development.ini
 
 
-ADD ./config/apache.wsgi /etc/ckan/default/apache.wsgi 
+ADD ./config/apache.wsgi /etc/ckan/default/apache.wsgi
 ADD ./config/ckan.conf /etc/apache2/sites-available/ckan.conf
 ADD ./config/apache2.conf /etc/apache2/apache2.conf
 ADD ./config/ports.conf  /etc/apache2/ports.conf
@@ -72,6 +72,7 @@ EXPOSE 80 5000
 ADD ./config/contrib/docker/svc /etc/service
 #CMD ["paster","serve","/etc/ckan/default/development.ini"]
 
+ADD layout/favicon.ico /usr/lib/ckan/default/src/ckan/ckan/public/base/images/favicon.ico
+ADD layout/logo_color.svg /usr/lib/ckan/default/src/ckan/ckan/public/base/images/clair-city-logo.svg
+
 CMD ["/sbin/my_init"]
-
-
