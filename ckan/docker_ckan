@@ -75,4 +75,10 @@ ADD ./config/contrib/docker/svc /etc/service
 ADD layout/favicon.ico /usr/lib/ckan/default/src/ckan/ckan/public/base/images/favicon.ico
 ADD layout/logo_color.svg /usr/lib/ckan/default/src/ckan/ckan/public/base/images/clair-city-logo.svg
 
+# Install claircity theme plugin
+COPY config/ckanext-claircity_theme /usr/lib/ckan/default/src/ckanext-claircity_theme
+WORKDIR /usr/lib/ckan/default/src/ckanext-claircity_theme
+RUN python setup.py develop
+
+
 CMD ["/sbin/my_init"]
