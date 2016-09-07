@@ -17,6 +17,10 @@
   margin-left: 20px;
 }
 
+.masthead a:hover {
+  text-decoration: none;
+}
+
 /* The note in the header below the title; read from site_description from 
   the ini file. Styled below:
 */
