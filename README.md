@@ -6,7 +6,7 @@ Installation
 
 - Python, jinja2 
 ```
-sudo apt-get install python-jinja2'
+sudo apt-get install python-jinja2
 ```
 
 - working docker installation, see https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
