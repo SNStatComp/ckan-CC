@@ -1,0 +1,28 @@
+<footer class="site-footer">
+  <div class="container">
+    {% block footer_content %}
+    <div class="row">
+      <div class="span8 footer-links">
+        {% block footer_nav %}
+          <ul class="unstyled">
+            {% block footer_links %}
+              <li><strong><a href="https://claircity.wordpress.com">ClairCity</a></strong></li>
+            {% endblock %}
+          </ul>
+        {% endblock %}
+      </div>
+      <div class="span4 attribution">
+        {% block footer_attribution %}
+          <p>{% trans %}Powered by <a href="http://ckan.org">CKAN</a>{% endtrans %}</p>
+        {% endblock %}
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+
+  {% block footer_debug %}
+    {% if g.debug %}
+      {% include 'snippets/debug.html' %}
+    {% endif %}
+  {% endblock %}
+</footer>
