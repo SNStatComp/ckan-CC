@@ -1,5 +1,28 @@
 
+
+/* .masthead is the header area on top of the page; this incluses the bar that
+  is visible when one is logged in; the logo; the tile and the navigation bar
+*/ 
 .masthead, .homepage .module-search .module-content, .site-footer, body {
   background: #003f6e;
+}
+
+.masthead .container {
+  padding-top: 20px;
+}
+
+.masthead span.title {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 20px;
+}
+
+/* The note in the header below the title; read from site_description from 
+  the ini file. Styled below:
+*/
+.masthead small {
+  letter-spacing: 0pt;
+  font-size: 50%;
+  font-weight: normal;
 }
 
