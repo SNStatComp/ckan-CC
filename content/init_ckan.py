@@ -25,7 +25,8 @@ claircity = RemoteCKAN('http://127.0.0.1', apikey=apikey, user_agent='importjob'
 print 'Removing organizations'
 orglist=claircity.action.organization_list()
 for org in orglist:
-	claircity.action.organization_purge(id=org)
+	#claircity.action.organization_purge(id=org)
+        pass
 print 'Removing groups'
 grouplist=claircity.action.group_list()
 for group in grouplist:
