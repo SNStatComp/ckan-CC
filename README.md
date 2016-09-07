@@ -12,9 +12,14 @@ sudo apt-get install python-jinja2
 - working docker installation, see https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
 - postgresql client (psql). 
 ```
-sudo apt-get install postgresql-client
+sudo apt-get install postgresql-client psycopg2
 ```
 
+```
+sudo pip install ckanapi
+sudo mkdir /data /src
+sudo chown www-data.www-data /data /src
+```
 
 ### Installation
 	
