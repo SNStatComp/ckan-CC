@@ -1,1 +1,1 @@
-docker run -d --name ckan -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /data:/var/lib/ckan ckan/organization-hierarchy
+docker run -d --name organization-hierarchy -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /data:/var/lib/ckan ckan/organization-hierarchy
