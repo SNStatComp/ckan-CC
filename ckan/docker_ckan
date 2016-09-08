@@ -38,9 +38,9 @@ RUN pip install html5lib==0.999
 RUN pip install ckanapi
 
 # move to data volume
-RUN mkdir /var/lib/ckan
-RUN chmod 755 /var/lib/ckan
-RUN chown www-data:www-data /var/lib/ckan
+#RUN mkdir /var/lib/ckan
+#RUN chmod 755 /var/lib/ckan
+#RUN chown www-data:www-data /var/lib/ckan
 
 ADD ./config/dev.ini /etc/ckan/default/development.ini
 ADD ./config/who.ini /etc/ckan/default/who.ini

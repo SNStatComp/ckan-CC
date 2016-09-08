@@ -1,1 +1,1 @@
-docker run -d --name datapusher -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /data:/var/lib/ckan ckan/datapusher
+docker run -d --name datapusher -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /data:/data ckan/datapusher

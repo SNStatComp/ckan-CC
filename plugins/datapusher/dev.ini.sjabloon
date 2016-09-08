@@ -106,10 +106,10 @@ ckan.views.default_views = image_view text_view recline_view
 
 
 ## Front-End Settings
-ckan.site_title = CKAN
-ckan.site_logo = /base/images/ckan-logo.png
-ckan.site_description =
-ckan.favicon = /images/icons/ckan.ico
+ckan.site_title = ClairCity data portal (development version)
+ckan.site_logo = /logo_linework.svg
+ckan.site_description = This site is for testing and development only. Any data uploaded may be removed any time.
+ckan.favicon = /base/images/favicon.ico
 ckan.gravatar_default = identicon
 ckan.preview.direct = png jpg gif
 ckan.preview.loadable = html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json
@@ -140,7 +140,7 @@ ckan.feeds.author_link =
 
 ## Storage Settings
 
-ckan.storage_path = /var/lib/ckan
+ckan.storage_path = /data
 ckan.max_resource_size = 10
 ckan.max_image_size = 2
 
