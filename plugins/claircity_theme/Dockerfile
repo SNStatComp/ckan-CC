@@ -1,4 +1,4 @@
-FROM ckan/ckan
+FROM ckan/datapusher
 
 # Copy the plugin to the container
 COPY ckanext-claircity_theme /usr/lib/ckan/default/src/ckanext-claircity_theme
