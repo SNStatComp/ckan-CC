@@ -1,0 +1,4 @@
+grep -r -i --include Dockerfile FROM >in
+grep -r -i --include build docker >out
+python create_dotfile.py in out buildstructure
+dot -Tpng buildstructure -o buildstructure.png
