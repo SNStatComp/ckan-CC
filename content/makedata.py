@@ -9,7 +9,7 @@ words=[w.strip() for w in f.readlines()]
 f.close()
 
 
-num_datasets=25
+num_datasets=1000
 maxcols=10
 maxrows=10000
 
