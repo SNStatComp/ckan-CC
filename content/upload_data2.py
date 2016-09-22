@@ -26,7 +26,7 @@ orglist=claircity.action.organization_list()
 packagelist=claircity.action.package_list()
 grouplist=claircity.action.group_list()
 #print orglist
-
+print grouplist
 
 datadir="/home/alex/ckan-CC/content/testdata"
 f=open('notes.txt')
@@ -53,7 +53,7 @@ for fullpath in filelist:
                                          title=filename,
                                          notes=note,
                                          owner_org=orglist[orgnr],
-                                         groups=[{'id':grouplist[groupnr]}])
+                                         groups=[{'name':grouplist[groupnr]}])
 
         e=requests.post('http://127.0.0.1/api/action/resource_create',
               data={"package_id":filename,'name':filename_safe,'url':'', 'format':'CSV'},
