@@ -75,4 +75,10 @@ ADD ./config/contrib/docker/svc /etc/service
 ADD layout/favicon.ico /usr/lib/ckan/default/src/ckan/ckan/public/base/images/favicon.ico
 ADD layout/logo_color.svg /usr/lib/ckan/default/src/ckan/ckan/public/base/images/clair-city-logo.svg
 
+# patch the recline view to replace deprecated mapquest map tiles               
+# possible alternatives are: OSM, OSM_HOT, STAMEN, WMFLABS                      
+ADD ./patches/OSM map_tile_patch                                                
+RUN patch /usr/lib/ckan/default/src/ckan/ckanext/reclineview/theme/public/vendor/recline/recline.js map_tile_patch && rm map_tile_patch
+
+
 CMD ["/sbin/my_init"]
