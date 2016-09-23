@@ -1,4 +1,4 @@
-FROM ckan/data_dictionaries
+FROM ckan/ckan
 RUN apt-get update && \
     apt-get install -y redis-server
 

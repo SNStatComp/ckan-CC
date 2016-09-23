@@ -1,4 +1,4 @@
-FROM ckan/claircity_theme
+FROM ckan/ckan
 
 RUN . /usr/lib/ckan/default/bin/activate
 WORKDIR /usr/lib/ckan/default/src/

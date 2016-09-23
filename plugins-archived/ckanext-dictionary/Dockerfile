@@ -1,4 +1,4 @@
-FROM ckan/organization-hierarchy
+FROM ckan/ckan
 
 WORKDIR /usr/lib/ckan/default/
 RUN . /usr/lib/ckan/default/bin/activate
