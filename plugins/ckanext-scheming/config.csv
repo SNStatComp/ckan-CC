@@ -1,0 +1,4 @@
+"section","option","value"
+"app:main","scheming.dataset_schemas","ckanext.scheming:ckan_dataset.json"
+"app:main","scheming.presets","ckanext.scheming:presets.json"
+"app:main","scheming.dataset_fallback","false"

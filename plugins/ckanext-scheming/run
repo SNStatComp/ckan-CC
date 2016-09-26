@@ -1,0 +1,1 @@
+docker run -d --name scheming -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /data:/data -v /src:/src ckan/scheming
