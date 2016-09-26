@@ -9,9 +9,9 @@ Create a working docker installation, see https://www.digitalocean.com/community
 
 Run the install script in this directory (install.sh), which contains these steps:
 
-- Install python, jinja2
+- Install python, jinja2, graphviz
 ```
-sudo apt-get install python-jinja2
+sudo apt-get install python-jinja2 graphviz
 ```
 ```
 sudo apt-get install postgresql-client python-psycopg2
