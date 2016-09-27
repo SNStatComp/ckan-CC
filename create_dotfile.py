@@ -1,10 +1,9 @@
-import sys
+import sys, subprocess
 
-def read_input (filename):
-	f=open (filename,'r')
+def read_input (txt):
 	image2dir={}
 	dir2image={}
-	for line in f.readlines():
+	for line in txt:
 		args=line.split(':FROM')
 		if len(args)!=2:
 			continue
@@ -14,11 +13,10 @@ def read_input (filename):
 		image2dir[dockerimage]=dirname
 	return dir2image, image2dir
 
-def read_output (filename):
-	f=open (filename,'r')
+def read_output (txt):
 	image2dir={}
 	dir2image={}
-	for line in f.readlines():
+	for line in txt:
 		args=line.split('-t ')
 		if len(args)!=2:
 			continue
@@ -29,8 +27,12 @@ def read_output (filename):
 	return dir2image, image2dir
 
 
-images_in, dir_in=read_input (sys.argv[1])
-images_out,dir_out=read_output (sys.argv[2])
+raw_images_in = subprocess.check_output('grep -r -i --include Dockerfile From', shell=True)
+raw_images_out = subprocess.check_output('grep -r -i --include build docker', shell=True)
+
+
+images_in, dir_in=read_input (raw_images_in)
+images_out,dir_out=read_output (raw_images_out)
 
 for k,v in images_in.items():
 	print k,v
@@ -41,7 +43,9 @@ for k,v in dir_in.items():
 
 print '---'
 
-f=open (sys.argv[3],'w')
+
+outfile='buildstruct'
+f=open (outfile,'w')
 f.write('digraph buildstruct {\n')
 for dirname, image in images_in.items():
 
@@ -54,3 +58,6 @@ for dirname, image in images_in.items():
 			f.write(s+';\n')
 f.write('}\n')
 f.close()
+
+os.system ('dot -Tpng buildstructure -o buildstructure.png')
+

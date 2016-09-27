@@ -18,7 +18,7 @@
 # WARNING: *THIS SETTING MUST BE SET TO FALSE ON A PRODUCTION ENVIRONMENT*
 debug = false
 
-[server:main]
+server:main]
 use = egg:Paste#http
 host = 0.0.0.0
 port = 5000
@@ -106,10 +106,10 @@ ckan.views.default_views = image_view text_view recline_view
 
 
 ## Front-End Settings
-ckan.site_title = ClairCity data portal (development version)
+ckan.site_title = {{title}}
 # CKAN prepends /usr/lib/ckan/default/src/ckan/ckan/public to the path below
 ckan.site_logo = /logo_linework.svg
-ckan.site_description = This site is for testing and development only. Any data uploaded may be removed any time.
+ckan.site_description = {{description}}
 # CKAN prepends /usr/lib/ckan/default/src/ckan/ckan/public to the path below
 ckan.favicon = /base/images/favicon.ico
 ckan.gravatar_default = identicon
