@@ -5,16 +5,16 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 directory='.'
-passfile='../passfile'
+configfile='../environment.cfg'
 
 if (len(sys.argv)>1):
-	passfile=sys.argv[1]
+	configfile=sys.argv[1]
 if (len(sys.argv)>2):
 	directory=sys.argv[2]
 
 
 #passwords inlezen en in dict opslaan
-f=open (passfile)
+f=open (configfile)
 passdict={}
 for line in csv.reader(f,delimiter=':'):
 	key,value=line[0],line[1]
