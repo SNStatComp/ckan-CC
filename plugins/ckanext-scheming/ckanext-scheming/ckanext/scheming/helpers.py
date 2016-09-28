@@ -7,9 +7,10 @@ from pylons.i18n import gettext
 
 from ckanapi import LocalCKAN, NotFound, NotAuthorized
 
-def lang():
     # access this function late in case ckan
     # is not set up fully when importing this module
+
+def lang():
     from ckantoolkit import h
     return h.lang()
 
@@ -324,3 +325,20 @@ def scheming_get_timezones(field):
         return to_options(validate_tz(timezones))
 
     return to_options(pytz.common_timezones)
+
+################
+# Additional functions for ClairCity project
+################
+
+def scheming_vocabulary_choices(field):
+    """
+    Required scheming field:
+    "vocabulary": "name or id"
+    """
+    try:
+        lc = LocalCKAN(username='')
+        vocab = lc.action.vocabulary_show(id=field['vocabulary'])
+        result = [{'value': tag['name'], 'label': tag['name']} for tag in vocab['tags']]
+        return  [{'value': 'notSpecified', 'label': 'not specified'}] + result
+    except:
+        return []

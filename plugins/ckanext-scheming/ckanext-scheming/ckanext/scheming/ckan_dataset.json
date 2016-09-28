@@ -34,17 +34,24 @@
       "preset": "dataset_organization"
     },
     {
-      "field_name": "license_id",
-      "label": "License",
-      "form_snippet": "license.html",
-      "help_text": "License definitions and additional information can be found at http://opendefinition.org/"
-    },
-    {
       "field_name": "quality",
       "label": "Quality aspects",
       "form_snippet": "markdown.html",
       "form_placeholder": "eg. known errors, assumptions"
-    }  
+    },
+    {
+      "field_name": "city",
+      "label": "City",
+      "preset": "select",
+      "choices_helper": "scheming_vocabulary_choices",
+      "vocabulary": "cities",
+      "required": "true"
+    },
+    {
+      "field_name": "license_id",
+      "label": "License",
+      "form_snippet": "license.html"
+    }
   ],
   "resource_fields": [
     {
