@@ -1,3 +1,4 @@
+environment.cfg
 passfile
 ckan/cleandb
 ckan/initdb2

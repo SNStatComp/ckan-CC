@@ -28,7 +28,7 @@ print 'Removing %d packages' % len(package_list)
 for package in package_list:
     print package
     claircity.action.dataset_purge(id=package)
-#sys.exit() 
+#sys.exit()
 
 
 
@@ -56,6 +56,15 @@ print grouplist
 for group in grouplist:
 	claircity.action.group_purge(id=group)
 
+print 'Removing vocabulary cities'
+try:
+	vocab = claircity.action.vocabulary_show(id='cities')
+	for tag in vocab['tags']:
+		claircity.action.tag_delete(id=tag['id'], vocabulary_id=tag['vocabulary_id'])
+	claircity.action.vocabulary_delete(id=vocab['id'])
+except:
+	print 'vocabulary "cities" not found'
+
 print 'adding organizations'
 with open('orglist.csv') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -68,3 +77,11 @@ with open('grouplist.csv') as csvfile:
     for row in reader:
         print row['name'],row['title']
         claircity.action.group_create(name=row['name'].lower(), title=row['title'])
+
+print 'adding vocabulary "cities"'
+vocab = claircity.action.vocabulary_create(name='cities')
+with open('cities_vocab.csv') as csvfile:
+	reader = csv.DictReader(csvfile)
+	for row in reader:
+		print row['tag']
+		claircity.action.tag_create(name=row['tag'], vocabulary_id=vocab['id'])
