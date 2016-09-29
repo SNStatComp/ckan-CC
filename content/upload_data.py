@@ -25,13 +25,16 @@ claircity = RemoteCKAN('http://127.0.0.1', apikey=apikey, user_agent='importjob'
 orglist=claircity.action.organization_list()
 packagelist=claircity.action.package_list()
 #print orglist
-claircity.action.dataset_purge(id='test')
-claircity.action.package_create (name='test',title='testdata',notes='notes for testdata',owner_org=orglist[0])
+try:
+        claircity.action.dataset_purge(id='test')
+except:
+        pass
+claircity.action.package_create (name='test',title='testdata',notes='notes for testdata',owner_org=orglist[0], city='Aveiro')
 #claircity.action.resource_create (package_id='test',name='testfile', url=' ', upload='data/Kerncijfers_Amsterdam_2015.csv')
 
 print 'ok'
 e=requests.post('http://127.0.0.1/api/action/resource_create',
-              data={"package_id":"test",'name':'testfile','url':'', 'format':'CSV'},
+              data={"package_id":"test",'name':'testfile','url':'', 'format':'CSV','city':' Aveiro' },
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file('data/Kerncijfers_Amsterdam_2015.csv'))])
 e=requests.post('http://127.0.0.1/api/action/resource_create',

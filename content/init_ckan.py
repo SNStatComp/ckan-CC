@@ -45,11 +45,10 @@ for org in orglist:
         datasets=claircity.action.organization_show(id=org,
                         include_datasets=True, include_tags=False, include_followers=False,
                         include_extras=False, include_users=False,include_groups=False)
-       # print datasets
-        if org=='claircity2':
-            continue
 	claircity.action.organization_purge(id=org)
         pass
+orglist=claircity.action.organization_list()
+print ' new orgs:' , orglist
 print 'Removing groups'
 grouplist=claircity.action.group_list()
 print grouplist
@@ -69,7 +68,12 @@ print 'adding organizations'
 with open('orglist.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-        claircity.action.organization_create(name=row['name'], title=row['title'], image_url=row['image_url'])
+        print row['name'],row['title']
+        try:
+                claircity.action.organization_create(name=row['name'], title=row['title'], image_url=row['image_url'])
+        except:
+                print 'error creating org' 
+        
         pass
 print 'adding groups'
 with open('grouplist.csv') as csvfile:
