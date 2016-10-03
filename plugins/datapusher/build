@@ -1,2 +1,2 @@
-python ../../expand_configs.py ../../passfile
+python ../../expand_configs.py ../../environment.cfg
 docker build -f ./Dockerfile  -t ckan/datapusher .
