@@ -197,6 +197,7 @@ class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
     p.implements(p.IDatasetForm, inherit=True)
     p.implements(p.IActions)
     p.implements(p.IValidators)
+    p.implements(p.IFacets)
 
     SCHEMA_OPTION = 'scheming.dataset_schemas'
     FALLBACK_OPTION = 'scheming.dataset_fallback'
@@ -262,6 +263,10 @@ class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
             'scheming_dataset_schema_list': scheming_dataset_schema_list,
             'scheming_dataset_schema_show': scheming_dataset_schema_show,
         }
+
+    def dataset_facets(self, facets_dict, package_type):
+        facets_dict['city'] = p.toolkit._('Cities')
+        return facets_dict
 
 
 class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
