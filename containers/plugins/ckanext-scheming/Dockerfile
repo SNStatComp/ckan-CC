@@ -10,7 +10,7 @@ RUN . /usr/lib/ckan/default/bin/activate && \
     pip install -r requirements.txt
 
 RUN cat /etc/ckan/default/development.ini | \
-    sed '/^ckan\.plugins/ s/$/ scheming_datasets/' > tmp && \
+    sed '/^ckan\.plugins/ s/$/ scheming_datasets scheming_facets/' > tmp && \
     cp tmp /etc/ckan/default/development.ini && \
     rm tmp
 

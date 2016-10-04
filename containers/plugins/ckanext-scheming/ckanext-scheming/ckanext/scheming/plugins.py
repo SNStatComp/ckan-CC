@@ -41,6 +41,7 @@ from ckanext.scheming.converters import (
     convert_to_json_if_datetime
 )
 
+from collections import OrderedDict
 import os
 import inspect
 
@@ -197,7 +198,6 @@ class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
     p.implements(p.IDatasetForm, inherit=True)
     p.implements(p.IActions)
     p.implements(p.IValidators)
-    p.implements(p.IFacets)
 
     SCHEMA_OPTION = 'scheming.dataset_schemas'
     FALLBACK_OPTION = 'scheming.dataset_fallback'
@@ -264,10 +264,6 @@ class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
             'scheming_dataset_schema_show': scheming_dataset_schema_show,
         }
 
-    def dataset_facets(self, facets_dict, package_type):
-        facets_dict['city'] = p.toolkit._('Cities')
-        return facets_dict
-
 
 class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                            DefaultGroupForm, _SchemingMixin):
@@ -297,7 +293,6 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
             'scheming_group_schema_list': scheming_group_schema_list,
             'scheming_group_schema_show': scheming_group_schema_show,
         }
-
 
 class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                                   DefaultOrganizationForm, _SchemingMixin):
@@ -333,6 +328,32 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
             'scheming_organization_schema_show':
                 scheming_organization_schema_show,
         }
+
+class SchemingFacetsPlugin(p.SingletonPlugin):
+
+    p.implements(p.IFacets)
+
+    def dataset_facets(self, facets_dict, package_type):
+        facets_dict = _set_facets(facets_dict)
+        return facets_dict
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        facets_dict = _set_facets(facets_dict)
+        return facets_dict
+
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        facets_dict = _set_facets(facets_dict)
+        return facets_dict
+
+
+def _set_facets(facets):
+    facets.clear()
+    facets['city'] = p.toolkit._('Cities')
+    facets['groups'] = p.toolkit._('Groups')
+    facets['organization'] = p.toolkit._('Organizations')
+    facets['tags'] = p.toolkit._('Tags')
+    facets['res_format'] = p.toolkit._('Formats')
+    return facets
 
 
 def _load_schemas(schemas, type_field):
