@@ -1,2 +1,0 @@
-python ../expand_configs.py
-docker build -f docker_solr -t ckan/solr .

@@ -1,4 +1,4 @@
 python ../expand_configs.py
 #docker build -f docker_postgres -t local/postgres:9.5 .
-docker build -f docker_postgres_ckan -t ckan/postgres .
+docker build -f Dockerfile -t ckan/postgres .
 

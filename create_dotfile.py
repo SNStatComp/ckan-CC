@@ -1,9 +1,9 @@
-import sys, subprocess
+import os, sys, subprocess
 
 def read_input (txt):
 	image2dir={}
 	dir2image={}
-	for line in txt:
+	for line in txt.split('\n'):
 		args=line.split(':FROM')
 		if len(args)!=2:
 			continue
@@ -16,7 +16,7 @@ def read_input (txt):
 def read_output (txt):
 	image2dir={}
 	dir2image={}
-	for line in txt:
+	for line in txt.split('\n'):
 		args=line.split('-t ')
 		if len(args)!=2:
 			continue
@@ -37,11 +37,27 @@ images_out,dir_out=read_output (raw_images_out)
 for k,v in images_in.items():
 	print k,v
 print
-print '**'
+print
+#print '**'
+parents=dir_in.keys()
+print parents
+print images_out.keys()
 for k,v in dir_in.items():
-	print k,v
+	image=v
+	#print k,v
+        #print image+"/build"
+	while image is not None:        
+                if image in parents:
+                        parentkey=parents[image]
+                        print parentkey+'/build'
+                        image=parentkey
+                else:
+                        print image+"/build"
+                        image=None
+        sys.exit()
+                
 
-print '---'
+
 
 
 outfile='buildstruct'
