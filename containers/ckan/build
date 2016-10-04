@@ -1,2 +1,2 @@
-python ../expand_configs.py
-docker build -f docker_ckan -t ckan/ckan .
+python $CC_HOME/bin/expand_configs.py
+docker build -f Dockerfile -t ckan/ckan .

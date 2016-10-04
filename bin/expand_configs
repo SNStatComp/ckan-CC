@@ -1,0 +1,1 @@
+python $CC_HOME/bin/expand_configs.py

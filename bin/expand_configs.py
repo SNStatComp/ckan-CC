@@ -5,7 +5,10 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 directory='.'
-configfile='../environment.cfg'
+
+git_topdir=os.environ.get('CC_HOME','.')
+
+configfile=git_topdir+'/environment.cfg'
 
 if (len(sys.argv)>1):
 	configfile=sys.argv[1]
