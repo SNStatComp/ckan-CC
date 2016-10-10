@@ -9,7 +9,7 @@ words=[w.strip() for w in f.readlines()]
 f.close()
 
 
-num_datasets=1000
+num_datasets=10
 maxcols=10
 maxrows=10000
 num_types=5
@@ -23,8 +23,9 @@ num_types=5
 #// 5: string
 
 
-
-
+datatype=['positive int', 'float', 'int', 'date','datetime','string']
+datasizes=[1e5,10e6,25e6,50e6]
+datasizetxt=['10kb','10mb','25mb','50mb','100mb']
 
 
 def makevalue (coltype):
@@ -43,10 +44,25 @@ def makevalue (coltype):
         val=d.isoformat()
     if coltype==5:
         val=words[random.randrange(0,len(words))]
+
+    if (coltype<0) or (coltype>5):
+        val=''
     return val
 
     
-        
+
+def make_bigfile (size,sizetxt):
+
+    f=open (datadir+'/test_size_'+sizetxt+'.csv','w')
+    totalsize=0
+    while totalsize<size:
+        num_cols=20
+        row=[makevalue(2) for i in range(num_cols)]
+        line=','.join(row)+'\n'
+        totalsize+=len(line)
+        f.write(line)    
+    f.close()    
+    
 
 
 
@@ -58,7 +74,7 @@ for i in range(num_datasets):
     filename=words[random.randrange(0,len(words))]    
     f=open (datadir+'/'+filename+'.csv','w')
     num_cols=random.randrange(0,maxcols)
-    print filename, num_cols
+    print 'writing %s, %d columns' % (filename, num_cols)
     coltypes=[random.randrange(num_types) for col in range(num_cols)]
     rownames=[words[random.randrange(0,len(words))] for i in range(num_cols)]
     f.write(','.join (rownames)+'\n')
@@ -69,3 +85,24 @@ for i in range(num_datasets):
         f.write(','.join(row)+'\n')
     f.close()
 
+
+
+# datatypes testen
+
+for typenr in range(num_types):
+    print 'writing test_%s' % datatype[typenr]
+    filename='test_'+datatype[typenr]
+    f=open (datadir+'/'+filename+'.csv','w')
+    for linenr in range(1,1000):
+        row=makevalue(i)+'\n'
+        f.write(row)
+    f.close()
+
+
+# bigfile-test
+
+for i in range (len(datasizes)):
+    print 'writing test_%s' % datasizetxt[i]
+    make_bigfile (datasizes[i],datasizetxt[i])
+
+    

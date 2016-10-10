@@ -1,4 +1,5 @@
+: "${CC_HOME?set CC_HOME by running \'. config\' in ckan-CC directory}"
+set -e
 python ../expand_configs.py
-#docker build -f docker_postgres -t local/postgres:9.5 .
 docker build -f Dockerfile -t ckan/postgres .
 
