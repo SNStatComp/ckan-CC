@@ -106,9 +106,9 @@ ckan.views.default_views = image_view text_view recline_view
 
 
 ## Front-End Settings
-ckan.site_title = ClairCity data portal (development version)
+ckan.site_title = {{title}}
 ckan.site_logo = /logo_linework.svg
-ckan.site_description = This site is for testing and development only. Any data uploaded may be removed any time.
+ckan.site_description =  {{description}}
 ckan.favicon = /base/images/favicon.ico
 ckan.gravatar_default = identicon
 ckan.preview.direct = png jpg gif
