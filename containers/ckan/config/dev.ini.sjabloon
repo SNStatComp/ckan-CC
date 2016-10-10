@@ -18,7 +18,7 @@
 # WARNING: *THIS SETTING MUST BE SET TO FALSE ON A PRODUCTION ENVIRONMENT*
 debug = false
 
-server:main]
+[server:main]
 use = egg:Paste#http
 host = 0.0.0.0
 port = 5000
