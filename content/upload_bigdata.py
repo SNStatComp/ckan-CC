@@ -88,4 +88,7 @@ for fullpath in filelist:
               data={"package_id":filename,'name':filename_safe,'url':'', 'format':'CSV'},
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file(fullpath))])
-        print e.status_code
+        if (e.status_code)!=200:
+                print e.status_code
+                print e.text
+
