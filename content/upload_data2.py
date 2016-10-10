@@ -14,10 +14,30 @@ def get_apikey(username):
 	return apikey
 
 
+def get_meta():
+        orglist=claircity.action.organization_list()
+        packagelist=claircity.action.package_list()
+        grouplist=claircity.action.group_list()
+        voclist=claircity.action.vocabulary_list()
+
+        for v in voclist:
+                if v['name']=='cities' :
+                        citylist=v['tags']
+
+        f=open('notes.txt')
+        notes=f.readlines()
+        f.close()
+
+        return orglist, packagelist, grouplist, voclist, citylist, notes
+
+
+
 username='default'
 if len(sys.argv)>1:
 	username=sys.argv[1]
 apikey=get_apikey(username)
+        
+
 
 
 claircity = RemoteCKAN('http://127.0.0.1', apikey=apikey, user_agent='importjob')
@@ -37,7 +57,8 @@ print citylist
 #print orglist
 print grouplist
 
-datadir="/home/alex/ckan-CC/content/testdata"
+datadir=os.path.abspath ('./testdata/')
+
 f=open('notes.txt')
 notes=f.readlines()
 f.close()
@@ -77,7 +98,7 @@ for fullpath in filelist:
                 print 'package already exists:' , filename_safe
                 continue
 
-        e=requests.post('http://127.0.0.1/api/action/resource_create',
+        e=requests.post('http://10.0.3.1/api/action/resource_create',
               data={"package_id":filename,'name':filename_safe,'url':'', 'format':'CSV'},
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file(fullpath))])

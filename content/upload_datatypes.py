@@ -51,9 +51,9 @@ citylen=len(citylist)
 
 
 
-filelist = glob.glob(datadir+"/test_size*.csv")
+filelist = glob.glob(datadir+"/test_type*.csv")
 
-#print 'package_list:', package_list
+print 'package_list:', package_list
 print 'files:', filelist
 for fullpath in filelist:       
         names=fullpath.split('/')
@@ -85,7 +85,10 @@ for fullpath in filelist:
 
         print fullpath
         e=requests.post('http://127.0.0.1/api/action/resource_create',
-              data={"package_id":filename,'name':filename_safe,'url':'', 'format':'CSV'},
+              data={"package_id":filename,'name':filename_safe,'url':'http://claircitydev.cbs.nl/test', 'format':'CSV'},
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file(fullpath))])
-        print e.status_code
+        print e.text
+        if (e.status_code)!=200:
+                print e.status_code
+                print e.text
