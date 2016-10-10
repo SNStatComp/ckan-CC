@@ -1,8 +1,11 @@
 
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
 
 /* .masthead is the header area on top of the page; this incluses the bar that
   is visible when one is logged in; the logo; the tile and the navigation bar
-*/ 
+*/
 .masthead, .homepage .module-search .module-content, .site-footer, body {
   background: #003f6e;
 }
@@ -21,7 +24,7 @@
   text-decoration: none;
 }
 
-/* The note in the header below the title; read from site_description from 
+/* The note in the header below the title; read from site_description from
   the ini file. Styled below:
 */
 .masthead small {
@@ -30,3 +33,33 @@
   font-weight: normal;
 }
 
+/* Formatting for the clickable model on the front page */
+.clickablemodel {
+  padding: 20px;
+}
+.clickablemodel g > g:hover {
+  cursor: pointer;
+  /*opacity: 0.5  ;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);*/
+
+  /*filter: invert(100%);
+  -webkit-filter: invert(100%);*/
+
+  /*filter: hue-rotate(45deg);
+  -webkit-filter: hue-rotate(45deg);*/
+  /*filter: brightness(1.4);*/
+}
+.clickablemodel g > g:hover rect {
+  /*filter: brightness(1.4);*/
+  fill: #068ACE !IMPORTANT;
+}
+.clickablemodel g > g:hover text > tspan {
+  /*filter: brightness(1.4);*/
+  fill: #FFFFFF !IMPORTANT;
+}
+.clickablemodel svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
