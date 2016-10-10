@@ -43,7 +43,7 @@ apikey=get_apikey(username)
 claircity = RemoteCKAN('http://127.0.0.1', apikey=apikey, user_agent='importjob')
 
 
-orglist, packagelist, grouplist, voclist, citylist, notes=get_meta()
+orglist, package_list, grouplist, voclist, citylist, notes=get_meta()
 notelen=len(notes)
 orglen=len(orglist)
 grouplen=len(grouplist)
@@ -51,9 +51,9 @@ citylen=len(citylist)
 
 
 
-filelist = glob.glob(datadir+"test_size*.csv")
+filelist = glob.glob(datadir+"/test_size*.csv")
 
-print 'package_list:', package_list
+#print 'package_list:', package_list
 print 'files:', filelist
 for fullpath in filelist:       
         names=fullpath.split('/')

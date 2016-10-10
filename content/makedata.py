@@ -12,11 +12,7 @@ f.close()
 num_datasets=10
 maxcols=10
 maxrows=10000
-datatype=['positive int', 'float', 'int', 'date','datetime','string']
-datasizes=[1e5,10e6,25e6,50e6,100e6,200e6]
-datasizetxt=['10kb','10mb','25mb','50mb','100mb','200mb']
-
-num_types=len(datatype)
+num_types=5
 
 
 #/ 0: positive int (2^32)
@@ -27,6 +23,9 @@ num_types=len(datatype)
 #// 5: string
 
 
+datatype=['positive int', 'float', 'int', 'date','datetime','string']
+datasizes=[1e5,10e6,25e6,50e6,100e6,200e6]
+datasizetxt=['10kb','10mb','25mb','50mb','100mb','200mb']
 
 
 def makevalue (coltype):
@@ -92,10 +91,10 @@ for i in range(num_datasets):
 
 for typenr in range(num_types):
     filename='test_type_'+datatype[typenr]
-    print 'writing %s' %  filename
+    print 'writing %s' % filename
     f=open (datadir+'/'+filename+'.csv','w')
     for linenr in range(1,1000):
-        row=makevalue(i)+'\n'
+        row=makevalue(typenr)+'\n'
         f.write(row)
     f.close()
 
@@ -103,7 +102,7 @@ for typenr in range(num_types):
 # bigfile-test
 
 for i in range (len(datasizes)):
-    print 'writing test_%s' % datasizetxt[i]
+    print 'writing test_size_%s' % datasizetxt[i]
     make_bigfile (datasizes[i],datasizetxt[i])
 
     
