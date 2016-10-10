@@ -35,7 +35,10 @@ body {
 
 /* Formatting for the clickable model on the front page */
 .clickablemodel {
-  padding: 20px;
+  padding: 5px 20px;
+}
+.clickablemodel p {
+  text-align: right;
 }
 .clickablemodel g > g:hover {
   cursor: pointer;
