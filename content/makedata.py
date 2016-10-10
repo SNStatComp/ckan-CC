@@ -12,7 +12,11 @@ f.close()
 num_datasets=10
 maxcols=10
 maxrows=10000
-num_types=5
+datatype=['positive int', 'float', 'int', 'date','datetime','string']
+datasizes=[1e5,10e6,25e6,50e6,100e6,200e6]
+datasizetxt=['10kb','10mb','25mb','50mb','100mb','200mb']
+
+num_types=len(datatype)
 
 
 #/ 0: positive int (2^32)
@@ -23,9 +27,6 @@ num_types=5
 #// 5: string
 
 
-datatype=['positive int', 'float', 'int', 'date','datetime','string']
-datasizes=[1e5,10e6,25e6,50e6]
-datasizetxt=['10kb','10mb','25mb','50mb','100mb']
 
 
 def makevalue (coltype):
@@ -90,8 +91,8 @@ for i in range(num_datasets):
 # datatypes testen
 
 for typenr in range(num_types):
-    print 'writing test_%s' % datatype[typenr]
-    filename='test_'+datatype[typenr]
+    filename='test_type_'+datatype[typenr]
+    print 'writing %s' %  filename
     f=open (datadir+'/'+filename+'.csv','w')
     for linenr in range(1,1000):
         row=makevalue(i)+'\n'
