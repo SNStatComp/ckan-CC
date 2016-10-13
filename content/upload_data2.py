@@ -1,5 +1,5 @@
 from ckanapi import RemoteCKAN
-import sys, csv, psycopg2, glob, random
+import os,sys, csv, psycopg2, glob, random
 import requests
 
 
@@ -98,8 +98,8 @@ for fullpath in filelist:
                 print 'package already exists:' , filename_safe
                 continue
 
-        e=requests.post('http://10.0.3.1/api/action/resource_create',
-              data={"package_id":filename,'name':filename_safe,'url':'', 'format':'CSV'},
+        e=requests.post('http://127.0.0.1/api/action/resource_create',
+              data={"package_id":filename_safe,'name':filename_safe,'url':'', 'format':'CSV'},
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file(fullpath))])
         #print e.text
