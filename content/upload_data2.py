@@ -3,6 +3,8 @@ import os,sys, csv, psycopg2, glob, random
 import requests
 
 
+max_datasets=10
+
 def get_apikey(username):
 	conn = psycopg2.connect("dbname='ckan_default' user='postgres' host='172.17.0.1'")
 	handle=conn.cursor()
@@ -72,6 +74,7 @@ filelist = glob.glob(datadir+"/*.csv")
 package_list=claircity.action.package_list()
 print package_list
 
+num_datasets=0
 for fullpath in filelist:        
         names=fullpath.split('/')
         filename=names[-1][:-4]
@@ -84,24 +87,31 @@ for fullpath in filelist:
         orgnr=random.randrange(0,orglen-1)
         groupnr=random.randrange(0,grouplen-1)
         citynr=random.randrange(0,citylen-1)        
-        
+
+        if (num_datasets<=0):
+                num_datasets=random.randrange(1,max_datasets)
+                
         #claircity.action.dataset_purge(id=filename)
-        try:
-                claircity.action.package_create (name=filename_safe,
+                try:
+                        claircity.action.package_create (name=filename_safe,
                                          title=filename,
                                          notes=note,
                                          owner_org=orglist[orgnr],
                                          groups=[{'name':grouplist[groupnr]}],
                                          city=citylist[citynr]['name'])
-        except:
-                # package bestaat wel maar is private?
-                print 'package already exists:' , filename_safe
-                continue
+                        package_name=filename_safe
+                except: 
+                        # package bestaat wel maar is private?
+                        print 'package already exists:' , filename_safe
+                        continue
+        
 
         e=requests.post('http://127.0.0.1/api/action/resource_create',
-              data={"package_id":filename_safe,'name':filename_safe,'url':'', 'format':'CSV'},
+              data={"package_id":package_name,'name':filename_safe,'url':'', 'format':'CSV'},
               headers={"X-CKAN-API-Key": apikey},
               files=[('upload', file(fullpath))])
-        #print e.text
-        print e.status_code
+        num_datasets-=1
+        if (e.status_code)!=200:
+                print e.status_code
+                print e.text
 
