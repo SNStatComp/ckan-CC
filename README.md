@@ -27,7 +27,7 @@ sudo chown www-data.www-data /data /src
 
 0. Put passfile in repository's top directory.
 1. Set environment by running 'source config' or '. config'.
-2. Build docker-images by running `./build` in the directories found in containers-enabled (ckan, psql and solr).
+2. Build docker-images by running `./build_containers` in the directory containers
 3. Start postgres and solr containers with `./run` in psql/solr directories.
 4. Create databasestructures by executing `./cleandb`  script in ckan directory.
 5. Start ckan container with `./run` script in ckan directory.

@@ -1,0 +1,9 @@
+cd ckan && ./build && cd ..
+
+cd solr && ./build && cd ..
+
+cd psql && ./build && cd ..
+
+cd plugins/datapusher && ./build && cd ../..
+cd plugins/claircity_theme && ./build && cd ../..
+cd plugins/ckanext-scheming && ./build && cd ../..
