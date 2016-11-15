@@ -1,9 +1,7 @@
 #!/bin/bash
-#install requirements for the DataPusher
-sudo apt-get install python-dev python-virtualenv build-essential libxslt1-dev libxml2-dev git
 
 #create a virtualenv for datapusher
-sudo virtualenv /usr/lib/ckan/datapusher
+sudo virtualenv -v --no-site-packages /usr/lib/ckan/datapusher
 
 #create a source directory and switch to it
 sudo mkdir /usr/lib/ckan/datapusher/src
@@ -14,8 +12,8 @@ sudo git clone -b stable https://github.com/ckan/datapusher.git
 
 #install the DataPusher and its requirements
 cd datapusher
-sudo /usr/lib/ckan/datapusher/bin/pip install --upgrade setuptools
-sudo /usr/lib/ckan/datapusher/bin/pip install -r requirements.txt
+sudo /usr/lib/ckan/datapusher/bin/pip install  --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org --upgrade setuptools
+sudo /usr/lib/ckan/datapusher/bin/pip install  --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org -r requirements.txt
 sudo /usr/lib/ckan/datapusher/bin/python setup.py develop
 
 #copy the standard Apache config file

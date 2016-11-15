@@ -1,1 +1,0 @@
-docker run -it -p 5000:5000 -p 80:80 --link db:db --link solr:solr -v /src:/src ckan/ckan python /src/ckan-CC/content/init_ckan.py {{apikey}}
