@@ -13,10 +13,8 @@ RUN mkdir -p /home/install
 
 RUN virtualenv --never-download /usr/lib/ckan/datapusher 
 RUN mkdir /usr/lib/ckan/datapusher/src
-
 WORKDIR /usr/lib/ckan/datapusher/src
-RUN git config --global http.proxy  http://10.2.97.12:8080/
-RUN git config --global https.proxy  http://10.2.97.12:8080/
+
 
 RUN git clone -b stable https://github.com/ckan/datapusher.git
 WORKDIR /usr/lib/ckan/datapusher/src/datapusher

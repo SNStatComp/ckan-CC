@@ -1,4 +1,4 @@
 : "${CC_HOME?set CC_HOME by running \'. config\' in ckan-CC directory}"
 set -e
 python $CC_HOME/bin/expand_configs.py
-docker build -f Dockerfile -t ckan/ckan --build-arg http_proxy="http://10.2.97.12:8080" --build-arg https_proxy="https://10.2.97.12:8080" .
+docker build -f Dockerfile -t ckan/ckan .

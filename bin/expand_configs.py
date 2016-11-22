@@ -6,9 +6,14 @@ sys.setdefaultencoding('utf8')
 
 directory='.'
 
+ckan_site=os.environ.get('CKAN_SITE','.')
 git_topdir=os.environ.get('CC_HOME','.')
 
-configfile=git_topdir+'/environment.cfg'
+if ckan_site=='.':
+        print "set CKAN_SITE/ CC_HOME by running \'. config\' in ckan-CC directory" 
+        sys.exit()
+
+configfile=git_topdir+'/'+ckan_site+'.cfg'
 
 if (len(sys.argv)>1):
 	configfile=sys.argv[1]
@@ -23,6 +28,8 @@ for line in csv.reader(f,delimiter=':'):
 	key,value=line[0],line[1]
 	passdict[key]=value
 
+if ckan_site=='productie':
+        passdict['proxy']=True
 
 topdirectory='.'
 extensie='.sjabloon'
