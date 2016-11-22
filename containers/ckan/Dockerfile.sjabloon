@@ -19,12 +19,19 @@ RUN mkdir /etc/ckan
 
 RUN mkdir -p /usr/lib/ckan/default
 RUN chown root /usr/lib/ckan/default
-RUN pip --proxy http://10.2.97.12:8080/ install --upgrade pip
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install virtualenv
+
+{% if proxy is defined %}
+RUN pip --proxy http://{{ip_proxy}}/ install --upgrade pip
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install virtualenv
+{% else %} 
+RUN pip install --upgrade pip
+RUN pip install virtualenv
+{% endif %}
 
 WORKDIR /usr/lib/ckan/default/
-RUN virtualenv -v --no-site-packages /usr/lib/ckan/default
+RUN virtualenv -v --never-download /usr/lib/ckan/default
 
+{% if proxy is defined %}
 ADD ./config/git_2.7.4-0ubuntu1_amd64.deb /tmp/git_2.7.4-0ubuntu1_amd64.deb
 ADD ./config/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb /tmp/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb
 ADD ./config/libcurl3_7.47.0-1ubuntu2.2_amd64.deb /tmp/libcurl3_7.47.0-1ubuntu2.2_amd64.deb
@@ -32,21 +39,47 @@ RUN apt-get install /tmp/libcurl3_7.47.0-1ubuntu2.2_amd64.deb
 RUN apt-get install /tmp/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb 
 RUN apt-get install /tmp/git_2.7.4-0ubuntu1_amd64.deb -y --allow-downgrades
 
-RUN . /usr/lib/ckan/default/bin/activate
-RUN pip --proxy http://10.2.97.12:8080/ install -e 'git+https://github.com/ckan/ckan.git@ckan-2.5.2#egg=ckan'
+RUN git config --global http.proxy  http://{{ip_proxy}}/
+RUN git config --global https.proxy  http://{{ip_proxy}}/
 
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install -r /usr/lib/ckan/default/src/ckan/requirements.txt
+{% endif %}
+
+RUN . /usr/lib/ckan/default/bin/activate
+{% if proxy is defined %}
+RUN pip --proxy http://{{ip_proxy}}/ install -e 'git+https://github.com/ckan/ckan.git@ckan-2.5.2#egg=ckan'
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install testrepository pbr==0.11.0
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install -r /usr/lib/ckan/default/src/ckan/requirements.txt
+{% else %} 
+RUN pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.5.2#egg=ckan'
+RUN pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
+{% endif %}
+
 RUN mkdir -p /etc/ckan/default && chown -R `whoami` /etc/ckan/
 RUN pip uninstall -y paste
 RUN pip uninstall -y pastedeploy
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install --upgrade paste
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install pastedeploy
 
+{% if proxy is defined %}
+
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install --upgrade paste
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install pastedeploy
 #RUN pip install setuptools==20.4
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org  install pylons==0.9.7
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install webob==1.0.8
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install html5lib==0.999
-RUN pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install ckanapi
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install pylons==0.9.7
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install webob==1.0.8
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install html5lib==0.999
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install ckanapi
+
+{% else %}
+
+RUN pip install --upgrade paste
+RUN pip install pastedeploy
+#RUN pip install setuptools==20.4
+RUN pip install pylons==0.9.7
+RUN pip install webob==1.0.8
+RUN pip install html5lib==0.999
+RUN pip install ckanapi
+
+{% endif %}
+
 
 # move to data volume
 #RUN mkdir /var/lib/ckan
@@ -58,15 +91,11 @@ ADD ./config/who.ini /etc/ckan/default/who.ini
 
 WORKDIR /usr/lib/ckan/default/src/ckan
 
-#RUN paster db init -c /etc/ckan/default/development.ini
-
-
 ADD ./config/apache.wsgi /etc/ckan/default/apache.wsgi
 ADD ./config/ckan.conf /etc/apache2/sites-available/ckan.conf
 ADD ./config/apache2.conf /etc/apache2/apache2.conf
 ADD ./config/ports.conf  /etc/apache2/ports.conf
 
-#ADD ./nginx.conf  /etc/nginx/sites-available/ckan
 ADD ./config/nginx.conf  /etc/nginx/nginx.conf
 RUN mkdir /var/cache/nginx
 
@@ -81,6 +110,7 @@ RUN chown www-data:www-data /etc/ckan/default/apache.wsgi
 EXPOSE 80 5000
 
 ADD ./config/contrib/docker/svc /etc/service
+# voor development-server
 #CMD ["paster","serve","/etc/ckan/default/development.ini"]
 
 ADD layout/favicon.ico /usr/lib/ckan/default/src/ckan/ckan/public/base/images/favicon.ico
@@ -91,5 +121,5 @@ ADD layout/logo_color.svg /usr/lib/ckan/default/src/ckan/ckan/public/base/images
 ADD ./patches/OSM map_tile_patch                                                
 RUN patch /usr/lib/ckan/default/src/ckan/ckanext/reclineview/theme/public/vendor/recline/recline.js map_tile_patch && rm map_tile_patch
 
-WORKDIR /var/log/nginx
+#WORKDIR /var/log/nginx
 CMD ["/sbin/my_init"]

@@ -6,9 +6,15 @@ COPY ckanext-claircity_theme /usr/lib/ckan/default/src/ckanext-claircity_theme
 WORKDIR /usr/lib/ckan/default/src/ckanext-claircity_theme
 
 # Install the plugin
+{% if proxy %}
 RUN . /usr/lib/ckan/default/bin/activate && \
     python setup.py develop && \
-    pip --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org install -r dev-requirements.txt 
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install -r dev-requirements.txt 
+{% else %}
+RUN . /usr/lib/ckan/default/bin/activate && \
+    python setup.py develop && \
+    pip install -r dev-requirements.txt 
+{% endif %}
 
 # Add the plugin to the ini file
 RUN cat /etc/ckan/default/development.ini | \
