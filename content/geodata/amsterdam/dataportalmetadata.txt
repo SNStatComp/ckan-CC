@@ -1,0 +1,8 @@
+Districts and neighbourhoods Amsterdam
+
+Some basic figures for the districts and neighbourhoods of Amsterdam including borders in geojson format.
+This datasets also shows the use of 'views'.
+
+http://statline.cbs.nl/Statweb/publication/?VW=T&DM=SLNL&PA=83487NED&D1=0-1,3-4,11,31-32,85,88,90,93,100,102-104&D2=5513-5575&HD=161123-1351&HDR=T&STB=G1
+
+Two views: Neighbourhoods Districs
