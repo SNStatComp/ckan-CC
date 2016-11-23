@@ -19,8 +19,8 @@ Link to the respective table in the statistical dissemination database of Statis
 
 Add three views:
  Municipality
-  data on municipality level
+  data on municipality level (one record)
  Districts
-  data on distric level
+  data on district level
  Neighbourhoods
-  data on nethbourhood level
+  data on neighbourhood level
