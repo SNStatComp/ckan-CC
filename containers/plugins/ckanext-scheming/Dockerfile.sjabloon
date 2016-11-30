@@ -25,7 +25,11 @@ ADD ./edit_development.ini.py ./edit_development.ini.py
 ADD ./config.csv ./config.csv
 
 {% if proxy %}
-RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install configparser && \
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install Paste && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install PasteDeploy && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install ckanapi && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install ckantoolkit && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install configparser && \
     python edit_development.ini.py /etc/ckan/default/development.ini && \
     rm edit_development.ini.py && \
     rm config.csv

@@ -1,10 +1,9 @@
-docker stop scheming
+docker stop ckan
 psql -h 172.17.0.1 -p 5432 -U postgres -f sql/clean_00_cleandb.sql
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster db init -c /etc/ckan/default/development.ini
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster db init -c /etc/ckan/default/development.ini" 
 psql -h 172.17.0.1 -p 5432 -U postgres -f sql/clean_01_init_datastore.sql
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user1}} password={{user1_pw}} email={{user1_email}} sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user2}} password={{user2_pw}} email={{user2_email}} sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user3}} password={{user3_pw}} email={{user3_email}} sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user4}} password={{user4_pw}} email={{user4_email}} sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user5}} password={{user5_pw}} email={{user5_email}} sysadmin=True -c /etc/ckan/default/development.ini
-docker run -p 80:80 --rm --link db:db --link solr:solr ckan/ckan paster user add {{user6}} password={{user6_pw}} email={{user6_email}}  -c /etc/ckan/default/development.ini
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster user add {{user1}} password={{user1_pw}} email={{user1_email}} sysadmin=True -c /etc/ckan/default/development.ini" 
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster user add {{user2}} password={{user2_pw}} email={{user2_email}} sysadmin=True -c /etc/ckan/default/development.ini" 
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster user add {{user3}} password={{user3_pw}} email={{user3_email}} sysadmin=True -c /etc/ckan/default/development.ini" 
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster user add {{user4}} password={{user4_pw}} email={{user4_email}} sysadmin=True -c /etc/ckan/default/development.ini" 
+docker run -p 80:80 --rm --link db:db --link solr:solr -w /usr/lib/ckan/default/src/ckan ckan/ckan /bin/bash -c ". /usr/lib/ckan/default/bin/activate ; paster user add {{user5}} password={{user5_pw}} email={{user5_email}} sysadmin=True -c /etc/ckan/default/development.ini" 

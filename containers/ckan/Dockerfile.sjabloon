@@ -5,6 +5,7 @@ ADD ./config/bash.bashrc /etc/bash.bashrc
 ADD ./config/apt.conf  /etc/apt/apt.conf
 ADD ./config/environment /etc/environment
 ADD ./config/cbsp_root.crt /usr/local/share/ca-certificates/cbsp_root.crt
+RUN openssl x509  -in /usr/local/share/ca-certificates/cbsp_root.crt -out /usr/local/share/ca-certificates/cbsp_root.pem
 RUN update-ca-certificates
 {% endif %}
 
@@ -61,13 +62,13 @@ RUN pip uninstall -y pastedeploy
 
 {% if proxy is defined %}
 
-#RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install --upgrade paste
-#RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install pastedeploy
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install --upgrade paste
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install pastedeploy
 #RUN pip install setuptools==20.4
 #RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install pylons==0.9.7
 #RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install webob==1.0.8
 #RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install html5lib==0.999
-#RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install ckanapi
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install ckanapi
 
 {% else %}
 

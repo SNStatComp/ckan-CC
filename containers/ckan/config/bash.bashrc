@@ -74,3 +74,4 @@ export HTTPS_PROXY=http://10.2.97.12:8080/
 export no_proxy="localhost,127.0.0.1" 
 export NO_PROXY="localhost,127.0.0.1"
 export GIT_SSL_NO_VERIFY=true
+PIP_CERT=/usr/local/share/ca-certificates/cbsp_root.pem 
