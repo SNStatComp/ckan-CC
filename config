@@ -1,4 +1,6 @@
 export PATH=$PATH:$(pwd)/bin
 export PYTHONPATH=$PYTHONPATH:$(pwd)/bin
 export CC_HOME=$(pwd)
-export CKAN_SITE=productie
+#export CKAN_SITE=productie
+export CKAN_SITE=development
+#export CKAN_SITE=fallback

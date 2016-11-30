@@ -21,7 +21,7 @@ debug = false
 [server:main]
 use = egg:Paste#http
 host = 0.0.0.0
-port = 5000
+port = 80
 
 [app:main]
 use = egg:ckan
@@ -149,7 +149,7 @@ ckan.max_image_size = 2
 # Make sure you have set up the DataStore
 
 ckan.datapusher.formats = csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-#ckan.datapusher.url = {{site_url}}:8800/
+#ckan.datapusher.url = {{site_url_datapusher}}
 ckan.datapusher.url = http://127.0.0.1:8800/
 
 # Resource Proxy settings
@@ -189,11 +189,13 @@ keys = console
 keys = generic
 
 [logger_root]
-level = WARNING
+#level = WARNING
+level = DEBUG
 handlers = console
 
 [logger_ckan]
-level = INFO
+#level = INFO
+level = DEBUG	
 handlers = console
 qualname = ckan
 propagate = 0

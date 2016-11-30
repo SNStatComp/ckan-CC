@@ -19,10 +19,13 @@ WORKDIR /usr/lib/ckan/datapusher/src
 RUN git clone -b stable https://github.com/ckan/datapusher.git
 WORKDIR /usr/lib/ckan/datapusher/src/datapusher
 
-
+{% if proxy is defined %}
+RUN /usr/lib/ckan/datapusher/bin/pip install  --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org --upgrade setuptools
+RUN /usr/lib/ckan/datapusher/bin/pip install  --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org -r requirements.txt
+{% else %}
 RUN /usr/lib/ckan/datapusher/bin/pip install  --upgrade setuptools
 RUN /usr/lib/ckan/datapusher/bin/pip install  -r requirements.txt
-
+{% endif %}
 RUN /usr/lib/ckan/datapusher/bin/python setup.py develop
 
 #copy the standard Apache config file

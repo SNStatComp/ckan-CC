@@ -1,2 +1,0 @@
-docker start datapusher
-psql -h 172.17.0.1 -p 5432 -U postgres -f setup_datastore_permissions.sql
