@@ -59,7 +59,8 @@ body {
 }
 .clickablemodel g > g:hover rect {
   /*filter: brightness(1.4);*/
-  fill: #068ACE !IMPORTANT;
+  /* blauw: fill: #068ACE !IMPORTANT; */
+  fill: #F8AE4D !IMPORTANT;
 }
 .clickablemodel g > g:hover text > tspan {
   /*filter: brightness(1.4);*/
