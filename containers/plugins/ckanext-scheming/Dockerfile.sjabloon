@@ -23,6 +23,7 @@ RUN cat /etc/ckan/default/development.ini | \
 
 ADD ./edit_development.ini.py ./edit_development.ini.py
 ADD ./config.csv ./config.csv
+EXPOSE 8800
 
 {% if proxy %}
 RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install Paste && \

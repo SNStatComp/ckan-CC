@@ -1,1 +1,0 @@
-docker run -d --name scheming -p 5000:5000 -p 80:80 --add-host claircitydata.cbs.nl:172.17.0.1 --link db:db --link solr:solr -v /data:/data -v /src:/src ckan/scheming

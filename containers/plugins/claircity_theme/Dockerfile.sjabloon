@@ -5,6 +5,7 @@ COPY ckanext-claircity_theme /usr/lib/ckan/default/src/ckanext-claircity_theme
 
 WORKDIR /usr/lib/ckan/default/src/ckanext-claircity_theme
 
+EXPOSE 8800
 # Install the plugin
 {% if proxy %}
 RUN . /usr/lib/ckan/default/bin/activate && \

@@ -1,1 +1,0 @@
-docker run -d --name ckan_cctheme -p 5000:5000 -p 80:80 --add-host claircitydev.cbs.nl:172.17.0.1 --link db:db --link solr:solr -v /data:/data -v /src:/src ckan/claircity_theme

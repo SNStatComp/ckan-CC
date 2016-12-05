@@ -1,1 +1,0 @@
-docker run -d --name datapusher -p 80:80 --add-host claircitydev.cbs.nl:172.17.0.1 --link db:db --link solr:solr -v /data:/data ckan/datapusher
