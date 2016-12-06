@@ -56,6 +56,9 @@ RUN pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.6.0#egg=ckan'
 RUN pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
 {% endif %}
 
+ADD ./config/reset_password.txt /usr/lib/ckan/default/src/ckan/ckan/templates/emails/reset_password.txt
+ADD ./config/invite_user.txt /usr/lib/ckan/default/src/ckan/ckan/templates/emails/invite_user.txt
+
 RUN mkdir -p /etc/ckan/default && chown -R `whoami` /etc/ckan/
 RUN pip uninstall -y paste
 RUN pip uninstall -y pastedeploy
