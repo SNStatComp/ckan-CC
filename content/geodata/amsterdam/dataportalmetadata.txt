@@ -27,3 +27,6 @@ Add three views:
  Neighbourhoods
   data on neighbourhood level
   Filter: regio_type = Buurt
+
+
+Add to group: Integrated Urban modules
