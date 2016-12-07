@@ -20,7 +20,10 @@ Link to the respective table in the statistical dissemination database of Statis
 Add three views:
  Municipality
   data on municipality level (one record)
+  Filter: regio_type = Gemeente
  Districts
   data on district level
+  Filter: regio_type = Wijk
  Neighbourhoods
   data on neighbourhood level
+  Filter: regio_type = Buurt
