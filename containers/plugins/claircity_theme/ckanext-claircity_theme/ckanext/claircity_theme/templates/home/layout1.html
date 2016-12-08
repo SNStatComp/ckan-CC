@@ -14,7 +14,8 @@
             var group = title.innerHTML;
             if (!group) continue;
             groups[i].addEventListener('click', function(group) {
-              var url = "/group/" + group;
+              //var url = "/group/" + group;
+              var url = "/dataset?groups=" + group;
               return function() {
                 window.location = url;
                 console.log(url);
