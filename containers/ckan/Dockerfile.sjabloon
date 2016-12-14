@@ -25,7 +25,7 @@ RUN chown root /usr/lib/ckan/default
 {% if proxy is defined %}
 RUN pip --proxy http://{{ip_proxy}}/ install --upgrade pip
 RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install virtualenv
-{% else %} 
+{% else %}
 RUN pip install --upgrade pip
 RUN pip install virtualenv
 {% endif %}
@@ -38,7 +38,7 @@ ADD ./config/git_2.7.4-0ubuntu1_amd64.deb /tmp/git_2.7.4-0ubuntu1_amd64.deb
 ADD ./config/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb /tmp/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb
 ADD ./config/libcurl3_7.47.0-1ubuntu2.2_amd64.deb /tmp/libcurl3_7.47.0-1ubuntu2.2_amd64.deb
 RUN apt-get install /tmp/libcurl3_7.47.0-1ubuntu2.2_amd64.deb
-RUN apt-get install /tmp/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb 
+RUN apt-get install /tmp/libcurl4-openssl-dev_7.47.0-1ubuntu2.2_amd64.deb
 RUN apt-get install /tmp/git_2.7.4-0ubuntu1_amd64.deb -y --allow-downgrades
 
 RUN git config --global http.proxy  http://{{ip_proxy}}/
@@ -51,7 +51,7 @@ RUN . /usr/lib/ckan/default/bin/activate
 RUN pip --proxy http://{{ip_proxy}}/ install -e 'git+https://github.com/ckan/ckan.git@ckan-2.6.0#egg=ckan'
 RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install testrepository pbr==0.11.0
 RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install -r /usr/lib/ckan/default/src/ckan/requirements.txt
-{% else %} 
+{% else %}
 RUN pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.6.0#egg=ckan'
 RUN pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
 {% endif %}
@@ -112,7 +112,7 @@ RUN a2dissite 000-default
 
 RUN chown www-data:www-data /etc/ckan/default/apache.wsgi
 
-EXPOSE 80 
+EXPOSE 80
 
 ADD ./config/contrib/docker/svc /etc/service
 # voor development-server
@@ -122,10 +122,14 @@ ADD ./config/contrib/docker/svc /etc/service
 ADD layout/favicon.ico /usr/lib/ckan/default/src/ckan/ckan/public/base/images/favicon.ico
 ADD layout/logo_color.svg /usr/lib/ckan/default/src/ckan/ckan/public/base/images/clair-city-logo.svg
 
-# patch the recline view to replace deprecated mapquest map tiles               
-# possible alternatives are: OSM, OSM_HOT, STAMEN, WMFLABS                      
-ADD ./patches/OSM map_tile_patch                                                
+# patch the recline view to replace deprecated mapquest map tiles
+# possible alternatives are: OSM, OSM_HOT, STAMEN, WMFLABS
+ADD ./patches/OSM map_tile_patch
 #RUN patch /usr/lib/ckan/default/src/ckan/ckanext/reclineview/theme/public/vendor/recline/recline.js map_tile_patch && rm map_tile_patch
+
+# patch group.py to include private datasets in group/org package lists - see branch 3361-fix-include-private in CKAN repository
+ADD ./patches/3361-fix-include-private 3361-fix-include-private
+RUN patch /usr/lib/ckan/default/src/ckan/ckan/controllers/group.py 3361-fix-include-private && rm 3361-fix-include-private
 
 #WORKDIR /var/log/apache2
 CMD ["/sbin/my_init"]
