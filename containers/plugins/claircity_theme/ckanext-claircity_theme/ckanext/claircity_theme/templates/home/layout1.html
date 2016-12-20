@@ -11,7 +11,7 @@
           for (var i = 0; i < groups.length; ++i) {
             var title = groups[i].querySelector('title');
             if (!title) continue;
-            var group = title.innerHTML;
+            var group = title.textContent;
             if (!group) continue;
             groups[i].addEventListener('click', function(group) {
               //var url = "/group/" + group;
