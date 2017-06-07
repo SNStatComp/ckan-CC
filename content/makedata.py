@@ -14,7 +14,7 @@ datasizes=[1e5,10e6,25e6,50e6,100e6,200e6]
 datasizetxt=['10kb','10mb','25mb','50mb','100mb','200mb']
 
 
-num_datasets=1000
+num_datasets=10
 maxcols=10
 maxrows=10000
 num_types=len(datatype)

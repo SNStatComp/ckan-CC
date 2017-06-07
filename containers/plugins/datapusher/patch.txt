@@ -1,0 +1,19 @@
+--- jobs.py	2017-06-07 14:51:55.995941628 +0200
++++ new_jobs.py	2017-06-07 14:54:46.071940006 +0200
+@@ -293,6 +293,7 @@
+     data = input['metadata']
+ 
+     ckan_url = data['ckan_url']
++    ckan_url = ckan_url.replace('https','http')
+     resource_id = data['resource_id']
+     api_key = input.get('api_key')
+ 
+@@ -303,6 +304,8 @@
+         time.sleep(5)
+         resource = get_resource(resource_id, ckan_url, api_key)
+ 
++    resource['url']=resource.get('url').replace('https','http')
++
+     # fetch the resource data
+     logger.info('Fetching from: {0}'.format(resource.get('url')))
+     try:

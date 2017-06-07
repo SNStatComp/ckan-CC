@@ -17,7 +17,11 @@ WORKDIR /usr/lib/ckan/datapusher/src
 
 
 RUN git clone -b stable https://github.com/ckan/datapusher.git
+ADD ./patch.txt /usr/lib/ckan/datapusher/src/datapusher/patch.txt
+
 WORKDIR /usr/lib/ckan/datapusher/src/datapusher
+
+RUN patch -p0 /usr/lib/ckan/datapusher/src/datapusher/datapusher/jobs.py ./patch.txt
 
 {% if proxy is defined %}
 RUN /usr/lib/ckan/datapusher/bin/pip install  --proxy http://10.2.97.12:8080/ --trusted-host pypi.python.org --upgrade setuptools
