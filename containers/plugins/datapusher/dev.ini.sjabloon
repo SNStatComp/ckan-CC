@@ -190,7 +190,8 @@ keys = generic
 
 [logger_root]
 #level = WARNING
-level = DEBUG
+#level = DEBUG
+level = ERROR
 handlers = console
 
 [logger_ckan]

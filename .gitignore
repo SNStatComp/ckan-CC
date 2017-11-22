@@ -6,3 +6,6 @@ ckan/sql/*.sql
 **/dev.ini
 *.pyc
 *.swp
+*.crt
+*.pem
+*.key

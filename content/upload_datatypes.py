@@ -52,7 +52,8 @@ citylen=len(citylist)
 
 
 
-filelist = glob.glob(datadir+"/test_type*.csv")
+
+filelist = glob.glob(datadir+"/test_private*.csv")
 
 print 'files:', filelist
 for fullpath in filelist:       

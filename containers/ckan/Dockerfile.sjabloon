@@ -24,7 +24,8 @@ RUN mkdir -p /usr/lib/ckan/default
 RUN chown root /usr/lib/ckan/default
 
 {% if proxy is defined %}
-RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install --upgrade pip
+RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install -U pip
+#RUN easy_install -U pip
 RUN pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org install virtualenv
 {% else %}
 RUN pip install --upgrade pip
