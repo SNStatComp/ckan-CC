@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://claircitydata.cbs.nl/group -->
+<html lang="en" class=" js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--[if lte ie 8]><script type="text/javascript" src="/fanstatic/vendor/:version:2017-11-22T12:36:11/html5.min.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="./index_files/select2.css">
+<link rel="stylesheet" type="text/css" href="./index_files/main.min.css">
+<link rel="stylesheet" type="text/css" href="./index_files/font-awesome.min.css">
+<!--[if ie 7]><link rel="stylesheet" type="text/css" href="/fanstatic/vendor/:version:2017-11-22T12:36:11/font-awesome/css/font-awesome-ie7.min.css" /><![endif]-->
+
+    
+      <meta name="generator" content="ckan 2.6.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dotmaps - ClairCity data portal</title>
+
+    
+    <link rel="shortcut icon" href="https://claircitydata.cbs.nl/base/images/favicon.ico">
+    
+  
+      
+    
+  <link rel="stylesheet" href="./index_files/claircity.css">
+  <link href="./index_files/css" rel="stylesheet"> 
+
+
+    
+      
+      
+    
+    
+  </head>
+
+  
+  <body data-site-root="https://claircitydata.cbs.nl/" data-locale-root="https://claircitydata.cbs.nl/" style="">
+
+    
+    <div class="hide"><a href="https://claircitydata.cbs.nl/group#content">Skip to content</a></div>
+  
+
+  
+    
+
+  <header class="account-masthead">
+    <div class="container">
+      
+        
+          <nav class="account not-authed">
+            <ul class="unstyled">
+              
+              <li><a href="https://claircitydata.cbs.nl/user/login">Log in</a></li>
+              
+                <li><a class="sub" href="https://claircitydata.cbs.nl/user/register">Register</a></li>
+              
+              
+            </ul>
+          </nav>
+        
+      
+    </div>
+  </header>
+
+<header class="navbar navbar-static-top masthead">
+  
+    
+  
+  <div class="container">
+    <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    
+    <hgroup class="header-image pull-left">
+
+      
+        
+          <h1>
+            <a class="logo" href="https://claircitydata.cbs.nl/">
+              <img src="./index_files/logo_linework.svg" alt="ClairCity data portal" title="ClairCity data portal">
+              <span class="title">
+                ClairCity data portal<br>
+                <small>Only claircity members can upload data.</small>
+              </span>
+            </a>
+          </h1>
+        
+      
+
+    </hgroup>
+
+    <div class="nav-collapse collapse">
+
+      
+        <nav class="section navigation">
+          <ul class="nav nav-pills">
+            
+              <li><a href="https://claircitydata.cbs.nl/dataset">Datasets</a></li><li><a href="https://claircitydata.cbs.nl/organization">Organizations</a></li><li class="active"><a href="https://claircitydata.cbs.nl/group">Groups</a></li><li><a href="https://claircitydata.cbs.nl/about">About</a></li>
+            
+          </ul>
+        </nav>
+      
+
+      
+        <form class="section site-search simple-input" action="https://claircitydata.cbs.nl/dataset" method="get">
+          <div class="field">
+            <label for="field-sitewide-search">Search Datasets</label>
+            <input id="field-sitewide-search" type="text" name="q" placeholder="Search">
+            <button class="btn-search" type="submit"><i class="icon-search"></i></button>
+          </div>
+        </form>
+      
+
+    </div>
+  </div>
+</header>
+
+  
+    <div role="main">
+      <div id="content" class="container">
+        
+          
+          
+
+          
+            <div class="toolbar">
+              
+                
+                  <ol class="breadcrumb">
+                    
+<li class="home"><a href="https://claircitydata.cbs.nl/"><i class="icon-home"></i><span> Home</span></a></li>
+                    
+  <li class="active"><a class=" active" href="https://claircitydata.cbs.nl/dotmaps/">Dotmaps</a></li>
+
+                  </ol>
+                
+              
+            </div>
+          
+
+    
+
+
+          <div class="row wrapper">            
+              <div class="primary span9">
+                
+                
+                  <article class="module">
+                    
+                    <div class="module-content">
+                      
+                      
+  <h1 class="hide-heading">Dotmaps</h1>
+  
+    
+
+
+  <h2> {% if num==1 %}   1 dotmap found {% else %} {{num}} dotmaps found {% endif %}</h2>
+    
+  
+
+  
+    
+  
+
+
+
+
+
+  
+  
+    
+      
+        
+<ul>
+
+	{% for row in dotmaps %}
+
+	<li><a href="/dotmap/{{row.link}}"> {{row.name}} </a>	</li>
+
+	{% endfor %}
+
+</ul>
+      
+    
+  
+  
+    
+  
+
+                    </div>
+                  </article>
+                
+              </div>
+            
+
+            
+              <aside class="secondary span3">
+                
+                
+  <div class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+
+    <i class="icon-info-sign"></i>
+    What are Dotmaps?
+  </h2>
+  <div class="module-content">
+    <p>
+       Dotmaps are maps containing dots.
+    </p>
+  </div>
+</div>
+
+              </aside>
+            
+          </div>
+        
+      </div>
+    </div>
+  
+    <footer class="site-footer">
+  <div class="container">
+    
+    <div class="row">
+      <div class="span8 footer-links">
+        
+          <img src="./index_files/eu_logo.jpg" style="height:50px;float:left;margin-right:10px">
+          This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement 689289.<p></p>
+        
+      </div>
+      <div class="span4 attribution">
+        
+          <p><strong><a href="http://www.claircity.eu/">ClairCity</a></strong><br>
+            <strong><a href="https://claircitydata.cbs.nl/ClairCityDataPortalUserGuide.pdf">User Guide</a></strong><br>
+          Powered by <strong><a href="http://ckan.org/">CKAN</a></strong></p>
+        
+      </div>
+    </div>
+    
+  </div>
+
+  
+    
+  
+</footer>
+  
+    
+    
+    
+  
+    
+
+      
+  <script>document.getElementsByTagName('html')[0].className += ' js';</script>
+<script type="text/javascript" src="./index_files/jquery.min.js"></script>
+<script type="text/javascript" src="./index_files/select2.min.js"></script>
+<script type="text/javascript" src="./index_files/image-upload.min.js"></script>
+</body></html>
