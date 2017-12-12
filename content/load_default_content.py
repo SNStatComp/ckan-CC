@@ -23,11 +23,11 @@ claircity = RemoteCKAN('http://127.0.0.1', apikey=apikey, user_agent='importjob'
 
 
 
-package_list=claircity.action.package_list()
-print 'Removing %d packages' % len(package_list)
-for package in package_list:
-    print package
-    claircity.action.dataset_purge(id=package)
+#package_list=claircity.action.package_list()
+#print 'Removing %d packages' % len(package_list)
+#for package in package_list:
+#    print package
+#    claircity.action.dataset_purge(id=package)
 #sys.exit()
 
 
@@ -65,7 +65,7 @@ except:
 	print 'vocabulary "cities" not found'
 
 print 'adding organizations'
-with open('orglist.csv') as csvfile:
+with open('orglist_inline_img.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         print row['name'],row['title']
