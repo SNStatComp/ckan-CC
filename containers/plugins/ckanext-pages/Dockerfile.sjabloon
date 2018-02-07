@@ -1,0 +1,56 @@
+FROM ckan/scheming
+
+COPY ckanext-pages /usr/lib/ckan/default/src/ckanext-pages
+WORKDIR /usr/lib/ckan/default/src/ckanext-pages
+
+{% if proxy %}
+RUN . /usr/lib/ckan/default/bin/activate && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install --upgrade pip && \
+    python setup.py develop && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install -r requirements.txt 
+{% else %}
+RUN . /usr/lib/ckan/default/bin/activate && \
+    pip install --upgrade pip && \
+    python setup.py develop && \
+    pip install -r requirements.txt
+{% endif %}
+
+RUN cat /etc/ckan/default/development.ini | \
+    sed '/^ckan\.plugins/ s/$/ pages/' > tmp && \
+    cp tmp /etc/ckan/default/development.ini && \
+    rm tmp
+
+COPY ckanext-doi /usr/lib/ckan/default/src/ckanext-doi
+WORKDIR /usr/lib/ckan/default/src/ckanext-doi
+
+{% if proxy %}
+RUN . /usr/lib/ckan/default/bin/activate && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install --upgrade pip && \
+    pip --proxy http://{{ip_proxy}}/ --trusted-host pypi.python.org  install -r requirements.txt  &&\ 
+    python setup.py develop 
+{% else %}
+RUN . /usr/lib/ckan/default/bin/activate && \
+    pip install --upgrade pip && \
+    python setup.py develop && \
+    pip install -r requirements.txt
+{% endif %}
+
+#RUN cat /etc/ckan/default/development.ini | \
+#    sed '/^ckan\.plugins/ s/$/ doi/' > tmp && \
+#    cp tmp /etc/ckan/default/development.ini && \
+#    rm tmp
+
+ADD ./edit_development.ini.py ./edit_development.ini.py
+ADD ./config.csv ./config.csv
+EXPOSE 8800
+
+{% if proxy %}
+RUN python edit_development.ini.py /etc/ckan/default/development.ini && \
+    rm edit_development.ini.py && \
+    rm config.csv
+{% else %}
+RUN pip install configparser && \
+    python edit_development.ini.py /etc/ckan/default/development.ini && \
+    rm edit_development.ini.py && \
+    rm config.csv
+{% endif %}
