@@ -1,6 +1,6 @@
 "section","option","value"
 "app:main","ckanext.pages.allow_html" ,"True" 
 "app:main","ckanext.pages.about_menu" ,"True" 
-"app:main","ckanext.pages.organization" ,"True" 
-"app:main","ckanext.pages.group" ,"True" 
+"app:main","ckanext.pages.organization" ,"False" 
+"app:main","ckanext.pages.group" ,"False" 
 "app:main","ckanext.pages.group_menu" ,"True" 
