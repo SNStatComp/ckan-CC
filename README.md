@@ -1,3 +1,6 @@
+### Warning
+This ckan installation has been used for data portal functionality that has been *ended*. The software has not been updated for security patches since, so dont use it for a new installation. For archiving purposes it remains accessible as read-only.
+
 Installation
 ------------
 
